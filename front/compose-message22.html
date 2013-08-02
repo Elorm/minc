@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MEST Messsage Center</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="scripts/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+  <link href="scripts/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="scripts/css/composemessage22.css">	
+  <link rel="stylesheet" type="text/css" href="scripts/css/custom.css">	
+</head>
+
+<body >
+<!-- nav bar -->
+	<div class="row">
+		<div class="subnav navbar navbar-fixed-top">
+	 		<div class="navbar-inner">
+			  	<div class="container">
+				    <a class="brand" href="#"></a>
+				    <ul class="nav">
+				      <li class=""><a href="/delete"><i class="icon-home icon-white"></i>Home</a></li>
+				      <li><a href="#">About</a></li>
+				      <li><a href="#">When something comes up</a></li>
+				    </ul>
+				    <div id="message-link" class="nav pull-right">
+			   			<ul class="">
+			   				<li><a href="/search"><i class="icon-large icon-search icon-white"></i>Search</a></li>
+			   				<li><a href="/messages"><i class="icon-large icon-envelope icon-white"></i>Message</a></li>
+			   				<li><a href="#"><i class="icon-large icon-star icon-white"></i>Favorites</a></li>
+			   				<li><a href=""><img src="scripts/img2/louis.jpg" id="profile-pic"></a></li>
+			   				<li><a href="">Hello,{{user.first_name}}</a></li>
+			   			</ul>
+				    </div>
+			  	</div>
+			</div>
+		</div>
+	</div>			
+		<!-- test nav ends -->
+		
+
+<div class="container" id="compose-center" >
+
+	<div class="row-fluid">
+		<!-- <div class="span1 pull-left left-side"></div> -->
+
+		<div class="span7 pull-left" id="msg-container">
+			<div class="row-fluid item">
+				<div id="msg-wrap">
+					<div class="row-fluid" id="msg-stage">
+						<label>PR0GRESS</label>
+					</div>
+				</div>
+			</div>		
+
+				<div class="row-fluid" id="msg-compose-container">
+					<div class="row-fluid item">
+							<div id="msg-wrap">
+								<div class="row-fluid">
+									<div class="span4" id="msg-type-label">
+										<p><strong>Type of <br>conversation:</strong></p>
+									</div>
+									<div class="span6" id="msg-select">
+										<select>
+											<option>Arrange a coaching call</option>
+											<option>Coaching conversation over email</option>
+											<option>Asking for a favor</option>
+											<option>Catch-up</option>
+										</select>
+									</div>
+								</div>
+								<div id="subject-to-fields">	
+									<div class="row-fluid" id="msg-to-container">
+										<div class="span2 pull-left" id="msg-to"><label><strong>To:</strong></label></div>
+										<div class="span7 pull-left" id="msg-to">
+											<input type="email" id="msg-to-input" name="msg-to" placeholder="You can send messages to only the mentor's prefered email.">
+										</div> 
+									</div>
+									<div class="row-fluid" id="msg-subject-container">
+										<div class="span2 pull-left" id="msg-subject-label"><label><strong>Subject:</strong></label></div>
+										<div class="span7 pull-left" id="msg-subject">
+											<input type="text" id="msg-subject-input" name="msg-subject" placeholder="Seeking advice about email marketing">
+										</div> 
+									</div>
+								</div>	
+						</div>
+
+						<div class="row-fluid msg-content" id="msg-content-container">
+							<textarea name="msg-content" placeholder="Message here" id="msg-content"></textarea>
+						</div>
+						<div class="row-fluid" id="send-button-container">
+							<div class="span2 pull-right" id="send-button">
+								<button class="btn">Send</button>
+							</div>
+						</div>
+				</div>
+
+
+					<div class="row-fluid item">
+						<div class="row" id="msg-container">
+							<section class="row-fluid" id="msg-history">
+						    	<header class="span4"><h3>Mentor Inbox</h3></header>
+										<div class="span3 pull-right">
+											<h5><a href="" class="pull-right">show all</a></h5>
+										</div>
+						      	<div class="span12" id="mentor-inbox">
+					      			<div class="span3" id="sender-name">Donnah White</div>
+						      		<div class="span7" id="msg-title">Messsage title</div>
+						      		<div class="span2 pull-right" id="msg-date">Date</div>
+						      	</div>
+						      	<div class="span12" id="mentor-inbox">
+					      			<div class="span3" id="sender-name">Donnah White</div>
+						      		<div class="span7" id="msg-title">Messsage title</div>
+						      		<div class="span2 pull-right" id="msg-date">Date</div>
+						      	</div>
+						      	<div class="span12" id="mentor-inbox">
+					      			<div class="span3" id="sender-name">Donnah White</div>
+						      		<div class="span7" id="msg-title">Messsage title</div>
+						      		<div class="span2 pull-right" id="msg-date">Date</div>
+						      	</div>
+						      	<div class="span12" id="mentor-inbox">
+					      			<div class="span3" id="sender-name">Donnah White</div>
+						      		<div class="span7" id="msg-title">Messsage title</div>
+						      		<div class="span2 pull-right" id="msg-date">Date</div>
+						      	</div>  	  
+							</section>
+						</div>
+					</div>
+				</div>	
+		</div> <!-- left column ends -->
+
+		<div class="span4 pull-left" id="validate">
+			<div class="row-fluid" id="valid-first">
+				Where did you leave things with 
+				Donna?
+				Consectetur adipisicing elit, sed do eiusmod tempor 
+				incididunt ut labore et dolore magna aliqua. Ut enim 
+				ad minim veniam, quis nostrud	
+			</div>
+			<hr>
+			<div class="row-fluid"  id="valid-second">
+				<div class="row-fluid" id="checkbox-headings">
+					<p>Before sending, please complete the checklist.</p>
+				</div>
+				<div class="row-fluid" id="checkboxes">
+					<p><b>Message checklist</b></p>
+					<label class="">
+					  <input type="checkbox" value="">
+					 Have you clearly explained the purpose of the call?
+					</label>
+					<label class="checkbox">
+					  <input type="checkbox" value="">
+					 Short and sharp?
+					</label>
+					<label class="checkbox">
+					  <input type="checkbox" value="">
+					 Did you send an agenda? (it does not need to be long!)
+					</label>
+					<label class="checkbox">
+					  <input type="checkbox" value="">
+					 Have you checked for spelling mistakes?
+					</label>
+					<label class="checkbox">
+					  <input type="checkbox" value="">
+					 Did you leave your contact details? (skype, google talk)
+					</label>
+				</div>
+				<hr>
+				<div class="row-fluid">
+								
+					<div id="tip-carousel" class="row-fluid carousel slide">
+						<p><strong>Useful tips</strong></p>
+						<ol class="carousel-indicators">
+						    <li data-target="#tip-carousel" data-slide-to="0" class="active"></li>
+						    <li data-target="#tip-carousel" data-slide-to="1"></li>
+						    <li data-target="#tip-carousel" data-slide-to="2"></li>
+						</ol>
+
+						<div class="carousel-inner">
+						    <div class="active item">A strong introduction always makes a great mark</div>
+						    <div class="item">Spelling spelling spelling! It tells how much attention you pay and how important this is to you</div>
+						    <div class="item">Make it personal. Nobody wants to read robotic language</div>
+						</div>
+						 
+						  <!-- <a class="carousel-control left" href="#tip-carousel" data-slide="prev">&lsaquo;</a>
+						  <a class="carousel-control right" href="#tip-carousel" data-slide="next">&rsaquo;</a> -->
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+		<!-- <div class="span1 pull-left right-side"></div> -->
+	</div>
+
+</div> 
+
+
+
+<!-- footer -->
+<footer class="nav">
+	<div class="container">
+		<h4>MEST GLOBAL NETWORK  &mdash; shapping the future!</h4>
+		<div id="social-media">
+			<ul>
+				<li><a href="http://www.facebook.com/pages/Accra-Ghana/Meltwater-Entrepreneurial-School-of-Technology/63789311326?ref=ts"><img src="scripts/img2/social-icon/facebook.png"></a></li>
+				<li><a href="http://twitter.com/MESTghana"><img src="scripts/img2/social-icon/twitter.png"></a></li>
+				<li><a href=""><img src="scripts/img2/social-icon/googleplus.png"></a></li>
+				<li><a href="http://www.linkedin.com/companies/583588"><img src="scripts/img2/social-icon/linkedin.png"></a></li>
+				<li><a href=""><img src="scripts/img2/social-icon/rss.png"></a></li>
+				<li><a href="mailto:meltwater@melwater.org"><img src="scripts/img2/social-icon/mail.png"></a></li>
+			</ul>
+		</div>
+		<p><a href="#">&#169;2013   meltwater entreprenuerial school of technology</a></p>
+	</div>
+</footer>
+		
+ <!-- scripts go here	-->
+ <script src="scripts/js/jquery-2.0.3.min.js"></script>
+ <script src="scripts/bootstrap/js/bootstrap.js"></script>
+ <script src="scripts/js/ajax/msgCenterAjax.js"></script>
+<!-- <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+ <script>
+    tinymce.init({selector:'textarea'});
+ </script>-->
+   <!-- // <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>  -->
+    <script type="text/javascript" src="scripts/js/nicEdit-latest.js"></script> 
+   <script type="text/javascript">
+//<![CDATA[
+        bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+  //]]>
+  </script>
+</body>
+</html>	

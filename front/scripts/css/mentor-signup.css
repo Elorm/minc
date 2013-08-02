@@ -1,0 +1,91 @@
+#my-form{
+	padding: 25px;
+}
+		
+		.ideal-label{
+			width: 140px;
+		}
+		#one{
+			float: left;
+			padding-right: 61px;
+			border-right: 1px solid gray;
+		}
+		#two{
+			float: right;
+		}
+		.form{
+			width: 70%;
+			margin-right: 15%;
+			margin-left: 15%;
+			margin-top: 70px;
+
+		}
+		#program{
+			float: left;
+			margin-right: 100px;
+			margin-bottom: 30px;
+		}
+		#sector li {
+			float: left;
+			margin: 6px;
+			width: 221px;
+		}
+		#topics1{
+			float: left;
+			clear: right;
+			text-align: left;
+			margin-right: 8%;
+		}
+		#topics2{
+			float: left;
+			text-align: left;
+			margin-right: 8%;
+		}
+		#topics3{
+			float: left;
+			text-align: left;
+		}
+		#preference label, #preference select{
+			float: left;
+		}
+		p, #preference label{
+			color: #1f4f73;
+		}
+		#preference label{
+			font-size: 130%;
+			padding-top: 3px;
+		}
+		#program p,{
+			font-size: 25px
+		}
+	
+	#brief-bio textarea{
+		width: 720px;
+		height: 250px;
+	}
+
+	#referral{
+		/*width: 700px;*/
+		margin: auto;
+		padding: 20px;
+	} 
+
+	#referral ul li{
+		/*width: 700px;*/
+		margin-left: -18px;
+		display: inline;
+	} 
+
+	#referral li{
+		margin-right: 50px;
+	}
+
+	.ideal-field.ideal-radiocheck {
+		margin-right: 20px;
+		margin-bottom: 20px;
+	}
+
+	.text-box{
+		border: 1px solid grey;
+		height: 20px;
+	}

@@ -1,0 +1,194 @@
+body{
+	/*background: #4889F2; */
+	/*background-color: rgba(72,137,242, 0.5) ;*/
+	/*background: url(../img/background3.jpg);*/
+	background: url('http://www.designmyprofile.com/images/graphics/backgrounds/background0172.jpg');
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#msg-search-compose {
+background-color: rgba(255,255,255, 0.2);
+margin-left: 45px;
+height: 40px;
+padding-top: 12px;
+}
+
+#compose:hover{
+	text-decoration: none;
+}
+
+#msg-search{
+	width: 400px;
+}
+#msg-container{
+	height: 900px;
+	margin-right: 45px;
+}
+
+.top,#msg-center{
+	margin-top: 100px;
+}
+
+#mentor-inbox{
+	padding-left: 15px;
+	padding-top: 5px;
+	margin-bottom: 2px;
+	margin-left: 0;
+	/*margin-top: 10px;*/
+	border-bottom: 1px solid gray;
+}
+
+#mentor-inbox:hover{
+	background-color: rgba(255,255,255, 0.2);
+	border-left: 5px solid #000; /*#A4A4A4;*/
+	padding-left: 10px;
+	color: #000;
+}
+
+#msg-history{
+	margin-left: 45px;
+	/*background-color: #fff;*/
+	margin-top: 15px;
+	border:1px solid gray;
+	color: #fff;
+	background-color: rgba(36,31,28, 0.4)
+}
+
+section#msg-history header{
+	padding-left: 18px;
+	border-bottom: 1px solid #000;
+}
+
+/*#mentor-inbox:nth-child(even) {background: #D8D8D8}
+#mentor-inbox:nth-child(odd) {background: #FFF}*/
+
+
+/*.nav-stacked li{
+	border:1px solid gray;
+	background-color: rgba(36,31,28, 0.4)
+
+}
+
+
+.nav-stacked a{
+	color: #fff;
+	font-weight: bold;
+}
+
+.nav-stacked a:hover{
+	color: #838B8B;
+	font-weight: bold;
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*nav bar++++++++++++++++++++++++++++++++++++++++++++++++*/
+/*.navbar{*/
+	/*box-shadow: 0 0 5px 6px grey;*/
+/*	margin-top: 0px;
+	margin-bottom: 10px;
+}*/
+/*div.navbar-inner, div.navbar-inner li{
+	background: #262626;
+	
+}
+
+.navbar .navbar-inner ul li a{
+	text-shadow: none;
+	margin-top: 8px;
+
+}
+.navbar .navbar-inner ul li a:hover{
+	color: #e5e5e5;
+
+}*/
+.signup-buttons{
+	margin-top: -5px;
+}
+
+#message-link ul li{
+	display: inline;
+	margin-left: 5px;
+	margin-top: 8px;
+	color: white;
+	
+}
+#message-link ul li a{
+	color: #777777;
+	text-decoration: none;
+}
+#message-link ul li a i{
+	margin-right: 5px;
+}
+#message-link ul li a:hover{
+	color: #fff;
+}
+#profile-pic{
+	width: 50px;
+	height: 50px;
+}
+
+/*+++++++++++++++++++++++++ nav bar ends++++++++++++++++++++++++++++++++++=*/
+
+/*footer++++++++++++++++++++++++++++++++++++++++++*/
+footer.nav{
+ 	
+ 	/*background: #262626;*/
+ 	color: white;
+ 	text-align: center;
+ }
+
+ #copyright{
+ 	margin: auto;
+ }
+
+ #social-media ul{
+ 	list-style: none;
+ }
+
+ #social-media li{
+ 	display: inline;
+ 	margin: 5px;
+ }	
+ /*++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+footer ul li {
+	display: inline;
+	margin: 10px;
+}
+
+footer img{
+	width: 30px;
+	margin-top: 0;
+}
