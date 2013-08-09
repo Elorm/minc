@@ -1,0 +1,461 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Message Center</title>
+
+
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<link href="scripts/css/css3-gmail-style.css" media="all" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="scripts/css/message-center.css">
+<link href="scripts/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="scripts/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+
+<!-- <link rel="stylesheet" type="text/css" href="scripts/css/custom.css"> -->
+
+<script type="text/javascript">
+$(document).ready(function(){
+								
+ //download script
+	  $('.s_download').click(function(){
+			var semail = $("#itzurkarthi_email").val();
+			if(semail == '')
+			{
+				alert('Enter Email');
+				return false;
+			}
+			var str = "sub_email="+semail
+			$.ajax({
+				type: "POST",
+				url: "download.php",
+				data: str,
+				cache: false,
+				success: function(htmld){
+						$('#down_update').html(htmld);
+				}
+			});
+	  });								
+								
+								
+// check all checkboxes in table
+	if($('.checkall').length > 0) {
+		$('.checkall').click(function(){
+			var parentTable = $(this).parents('table');										   
+			var ch = parentTable.find('.checkbox');										 
+			if($(this).is(':checked')) {
+			
+				//check all rows in table
+				ch.each(function(){ 
+					$(this).attr('checked',true);
+					$(this).parent().addClass('checked');	//used for the custom checkbox style
+					$(this).parents('tr').addClass('selected'); // to highlight row as selected
+				});
+
+			} else {
+				
+				//uncheck all rows in table
+				ch.each(function(){ 
+					$(this).attr('checked',false); 
+					$(this).parent().removeClass('checked');	//used for the custom checkbox style
+					$(this).parents('tr').removeClass('selected');
+				});	
+				
+			}
+		});
+	}
+	
+		
+	if($('.mailinbox').length > 0) {
+		
+		// star
+		$('.msgstar').click(function(){
+			if($(this).hasClass('starred'))
+				$(this).removeClass('starred');
+			else
+				$(this).addClass('starred');
+		});
+		
+		//add class selected to table row when checked
+		$('.mailinbox tbody input:checkbox').click(function(){
+			if($(this).is(':checked'))
+				$(this).parents('tr').addClass('selected');
+			else
+				$(this).parents('tr').removeClass('selected');
+		});
+		
+		// trash
+  if($('.delete').length > 0) {
+  $('.delete').click(function(){
+	  var c = false;
+	  var cn = 0;
+	  var o = new Array();
+	  $('.mailinbox input:checkbox').each(function(){
+		  if($(this).is(':checked')) {
+			  c = true;
+			  o[cn] = $(this);
+			  cn++;
+		  }
+	  });
+	  if(!c) {
+		  alert('No selected message');	
+	  } else {
+		  var msg = (o.length > 1)? 'messages' : 'message';
+		  if(confirm('Delete '+o.length+' '+msg+'?')) {
+			  for(var a=0;a<cn;a++) {
+				  $(o[a]).parents('tr').remove();	
+			  }
+		  }
+	  }
+  });
+  }
+		
+		
+		// mark as read
+$('.mark_read').click(function(){
+	var c = false;
+	var cn = 0;
+	var o = new Array();
+	$('.mailinbox input:checkbox').each(function(){
+		if($(this).is(':checked')) {
+			c = true;
+			o[cn] = $(this);
+			cn++;
+		}
+	});
+	if(!c) {
+		alert('No selected message');	
+	} else {
+		var msg = (o.length > 1)? 'messages' : 'message';
+		if(confirm('Mark '+o.length+' '+msg+' to read')) {
+			for(var a=0;a<cn;a++) {
+				$(o[a]).parents('tr').removeClass('unread');
+			}
+		}
+	}
+});
+			
+	   // make messages to unread
+$('.mark_unread').click(function(){
+	  var c = false;
+	  var cn = 0;
+	  var o = new Array();
+	  $('.mailinbox input:checkbox').each(function(){
+		  if($(this).is(':checked')) {
+			  c = true;
+			  o[cn] = $(this);
+			  cn++;
+		  }
+	  });
+	  if(!c) {
+		  alert('No selected message');	
+	  } else {
+		  var msg = (o.length > 1)? 'messages' : 'message';
+		  if(confirm('Mark '+o.length+' '+msg+' to unread')) {
+			  for(var a=0;a<cn;a++) {
+				  $(o[a]).parents('tr').addClass('unread');
+			  }
+		  }
+	  }
+});
+		
+		
+	}
+});
+
+</script>
+</head>
+
+<body style="background:#fafafa">
+<center><h2>Welcome to your inbox</h2></center>
+<div class="tabbable" id="mail-tabs"> 
+  <ul class="nav nav-tabs">
+    <li class="active span4" ><a href="#tab1" data-toggle="tab">Mentor mails</a></li>
+    <li class="span4"><a href="#tab2" data-toggle="tab">Applicant mail</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <div id="mail">
+
+                            <ul class="grouped">
+                            <!-- <li style="margin-right:20px;"><a href="#" class="bttn red">COMPOSE</a></li> -->
+                            <li><a href="#" class="bttn icon refresh">Refresh</a></li>
+                            <li><a href="#" class="bttn mark_read">Mark as Read</a></li>
+                            <li><a href="#" class="bttn mark_unread">Mark as Unread</a></li>
+                            <li><a href="#" class="bttn icon delete">Delete</a></li>
+                            <li><a href="#" class="bttn icon folder">Folder</a></li>
+                            </ul>
+                            <form class="form-search pull-right" id="mail-search">
+								  <div class="input-append">
+								    <input type="text" class="span5 search-query" placeholder="search mail">
+								    <button type="submit" class="btn">Search</button>
+								  </div>
+							</form>
+                        
+        
+                        
+                        <table class="table table-bordered mailinbox" style="border-collapse:collapse; margin-top:10px;" border="0" cellpadding="5" cellspacing="3">
+
+                            <thead>
+                            <tr>
+                                <th class="head1 aligncenter"><input type="checkbox" class="checkall" /></th>
+                                <th class="head0">&nbsp;</th>
+                                <th class="head1">Sender</th>
+                                <th class="head0">Subject</th>
+                                <th class="head1 attachement">&nbsp;</th>
+                                <th class="head0">Date</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="unread">
+                                    <td class="aligncenter"><input type="checkbox" class="checkbox" name="" /></td>
+                                    <td class="star"><a class="msgstar"></a></td>
+                                    <td>Itzurkarthi</td>
+                                    <td><a href="" class="title">Facebook Style YouTube Video Expanding with $</a></td>
+                                    <td class="attachment"><img src="scripts/img/attachment.png" alt="" /></td>
+                                    <td class="date">May 1</td>
+                                </tr>
+                                <tr class="unread">
+                                    <td class="aligncenter"><input type="checkbox" class="checkbox" name="" /></td>
+                                    <td class="star"><a class="msgstar"></a></td>
+                                    <td>Facebook</td>
+                                    <td><a href="" class="title">Facebook Wall Script 3.0</a></td>
+                                    <td class="attachment"></td>
+                                    <td class="date">Apr 30</td>
+                                </tr>
+                                <tr>
+                                    <td class="aligncenter"><input type="checkbox" class="checkbox" name="" /></td>
+                                    <td class="star"><a class="msgstar"></a></td>
+                                    <td>Twitter</td>
+                                    <td><a href="" class="title">Animated Login Form with $ & CSS3</a></td>
+                                    <td class="attachment"></td>
+                                    <td class="date">Apr 28</td>
+                                </tr>
+                                <tr>
+                                    <td class="aligncenter"><input type="checkbox" class="checkbox" name="" /></td>
+                                    <td class="star"><a class="msgstar"></a></td>
+                                    <td>PHP</td>
+                                    <td><a href="" class="title">Validate IPv4 Address in PHP</a></td>
+                                    <td class="attachment"><img src="scripts/img/attachment.png" alt="" /></td>
+                                    <td class="date">Apr 20</td>
+                                </tr>
+                                <tr>
+                                    <td class="aligncenter"><input type="checkbox" class="checkbox" name="" /></td>
+                                    <td class="star"><a class="msgstar starred"></a></td>
+                                    <td>Itzurkarthi</td>
+                                    <td><a href="" class="title">Identifying Browser Window Screen Size & Name with $</a></td>
+                                    <td class="attachment"></td>
+                                    <td class="date">June 19</td>
+                                </tr>
+                                      <tr class="unread">
+                                    <td class="aligncenter"><input type="checkbox" class="checkbox" name="" /></td>
+                                    <td class="star"><a class="msgstar"></a></td>
+                                    <td>Itzurkarthi</td>
+                                    <td><a href="" class="title">Facebook Style YouTube Video Expanding with $</a></td>
+                                    <td class="attachment"><img src="scripts/img/attachment.png" alt="" /></td>
+                                    <td class="date">May 1</td>
+                                </tr>
+                                <tr class="unread">
+                                    <td class="aligncenter"><input type="checkbox" class="checkbox" name="" /></td>
+                                    <td class="star"><a class="msgstar"></a></td>
+                                    <td>Facebook</td>
+                                    <td><a href="" class="title">Facebook Wall Script 3.0</a></td>
+                                    <td class="attachment"></td>
+                                    <td class="date">Apr 30</td>
+                                </tr>
+                                <tr>
+                                    <td class="aligncenter"><input type="checkbox" class="checkbox" name="" /></td>
+                                    <td class="star"><a class="msgstar"></a></td>
+                                    <td>Twitter</td>
+                                    <td><a href="" class="title">Animated Login Form with $ & CSS3</a></td>
+                                    <td class="attachment"></td>
+                                    <td class="date">Apr 28</td>
+                                </tr>
+                                <tr>
+                                    <td class="aligncenter"><input type="checkbox" class="checkbox" name="" /></td>
+                                    <td class="star"><a class="msgstar"></a></td>
+                                    <td>PHP</td>
+                                    <td><a href="" class="title">Validate IPv4 Address in PHP</a></td>
+                                    <td class="attachment"><img src="scripts/img/attachment.png" alt="" /></td>
+                                    <td class="date">Apr 20</td>
+                                </tr>
+                                <tr>
+                                    <td class="aligncenter"><input type="checkbox" class="checkbox" name="" /></td>
+                                    <td class="star"><a class="msgstar starred"></a></td>
+                                    <td>Itzurkarthi</td>
+                                    <td><a href="" class="title">Identifying Browser Window Screen Size & Name with $</a></td>
+                                    <td class="attachment"></td>
+                                    <td class="date">June 19</td>
+                                </tr>
+        
+                            </tbody>
+                        </table>             
+ </div><!--  mail list ends -->
+    </div>
+    <div class="tab-pane" id="tab2">
+      <div id="mail">
+
+                            <ul class="grouped">
+                            <!-- <li style="margin-right:20px;"><a href="#" class="bttn red">COMPOSE</a></li> -->
+                            <li><a href="#" class="bttn icon refresh">Refresh</a></li>
+                            <li><a href="#" class="bttn mark_read">Mark as Read</a></li>
+                            <li><a href="#" class="bttn mark_unread">Mark as Unread</a></li>
+                            <li><a href="#" class="bttn icon delete">Delete</a></li>
+                            <li><a href="#" class="bttn icon folder">Folder</a></li>
+                            </ul>
+                        	<form class="form-search pull-right" id="mail-search">
+								  <div class="input-append">
+								    <input type="text" class="span4 search-query" placeholder="search mail">
+								    <button type="submit" class="btn">Search</button>
+								  </div>
+							</form>
+        
+                        
+                        <table class="table table-bordered mailinbox" style="border-collapse:collapse; margin-top:10px;" border="0" cellpadding="5" cellspacing="3">
+
+                            <thead>
+                            <tr>
+                                <th class="head1 aligncenter"><input type="checkbox" class="checkall" /></th>
+                                <th class="head0">&nbsp;</th>
+                                <th class="head1">Sender</th>
+                                <th class="head0">Subject</th>
+                                <th class="head1 attachement">&nbsp;</th>
+                                <th class="head0">Date</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <!-- <tr class="unread">
+                                    <td class="aligncenter"><input type="checkbox" class="checkbox" name="" /></td>
+                                    <td class="star"><a class="msgstar"></a></td>
+                                    <td>Itzurkarthi</td>
+                                    <td><a href="" class="title">Facebook Style YouTube Video Expanding with $</a></td>
+                                    <td class="attachment"><img src="scripts/img/attachment.png" alt="" /></td>
+                                    <td class="date">May 1</td>
+                                </tr> -->
+                                <tr class="unread">
+                                    <td class="aligncenter"><input type="checkbox" class="checkbox" name="" /></td>
+                                    <td class="star"><a class="msgstar"></a></td>
+                                    <td>Facebook</td>
+                                    <td><a href="" class="title">Facebook Wall Script 3.0</a></td>
+                                    <td class="attachment"></td>
+                                    <td class="date">Apr 30</td>
+                                </tr>
+                                <tr>
+                                    <td class="aligncenter"><input type="checkbox" class="checkbox" name="" /></td>
+                                    <td class="star"><a class="msgstar"></a></td>
+                                    <td>Twitter</td>
+                                    <td><a href="" class="title">Animated Login Form with $ & CSS3</a></td>
+                                    <td class="attachment"></td>
+                                    <td class="date">Apr 28</td>
+                                </tr>
+                                <tr>
+                                    <td class="aligncenter"><input type="checkbox" class="checkbox" name="" /></td>
+                                    <td class="star"><a class="msgstar"></a></td>
+                                    <td>PHP</td>
+                                    <td><a href="" class="title">Validate IPv4 Address in PHP</a></td>
+                                    <td class="attachment"><img src="scripts/img/attachment.png" alt="" /></td>
+                                    <td class="date">Apr 20</td>
+                                </tr>
+                                <tr>
+                                    <td class="aligncenter"><input type="checkbox" class="checkbox" name="" /></td>
+                                    <td class="star"><a class="msgstar starred"></a></td>
+                                    <td>Itzurkarthi</td>
+                                    <td><a href="" class="title">Identifying Browser Window Screen Size & Name with $</a></td>
+                                    <td class="attachment"></td>
+                                    <td class="date">June 19</td>
+                                </tr>
+                                      <tr class="unread">
+                                    <td class="aligncenter"><input type="checkbox" class="checkbox" name="" /></td>
+                                    <td class="star"><a class="msgstar"></a></td>
+                                    <td>Itzurkarthi</td>
+                                    <td><a href="" class="title">Facebook Style YouTube Video Expanding with $</a></td>
+                                    <td class="attachment"><img src="scripts/img/attachment.png" alt="" /></td>
+                                    <td class="date">May 1</td>
+                                </tr>
+                                <tr class="unread">
+                                    <td class="aligncenter"><input type="checkbox" class="checkbox" name="" /></td>
+                                    <td class="star"><a class="msgstar"></a></td>
+                                    <td>Facebook</td>
+                                    <td><a href="" class="title">Facebook Wall Script 3.0</a></td>
+                                    <td class="attachment"></td>
+                                    <td class="date">Apr 30</td>
+                                </tr>
+                                <tr>
+                                    <td class="aligncenter"><input type="checkbox" class="checkbox" name="" /></td>
+                                    <td class="star"><a class="msgstar"></a></td>
+                                    <td>Twitter</td>
+                                    <td><a href="" class="title">Animated Login Form with $ & CSS3</a></td>
+                                    <td class="attachment"></td>
+                                    <td class="date">Apr 28</td>
+                                </tr>
+                                <tr>
+                                    <td class="aligncenter"><input type="checkbox" class="checkbox" name="" /></td>
+                                    <td class="star"><a class="msgstar"></a></td>
+                                    <td>PHP</td>
+                                    <td><a href="" class="title">Validate IPv4 Address in PHP</a></td>
+                                    <td class="attachment"><img src="scripts/img/attachment.png" alt="" /></td>
+                                    <td class="date">Apr 20</td>
+                                </tr>
+                                <tr>
+                                    <td class="aligncenter"><input type="checkbox" class="checkbox" name="" /></td>
+                                    <td class="star"><a class="msgstar starred"></a></td>
+                                    <td>Itzurkarthi</td>
+                                    <td><a href="" class="title">Identifying Browser Window Screen Size & Name with $</a></td>
+                                    <td class="attachment"></td>
+                                    <td class="date">June 19</td>
+                                </tr>
+        
+                            </tbody>
+                        </table>             
+ </div><!--  mail list ends -->
+    </div>
+  </div>
+</div>
+
+ 
+ 
+ 
+<br />
+<br />
+ <div id="mail">
+
+  </div>
+ <script type="text/javascript">
+function woopraReady(tracker) {
+    tracker.setDomain('itzurkarthi.com');
+    tracker.setIdleTimeout(300000);
+    tracker.trackPageview({type:'pageview',url:window.location.pathname+window.location.search,title:document.title});
+    return false;
+}
+(function() {
+    var wsc = document.createElement('script');
+    wsc.src = document.location.protocol+'//static.woopra.com/js/woopra.js';
+    // wsc.src = 'http://static.woopra.com/js/woopra.js';
+    console.log(wsc.src);
+    console.log(document.location.protocol);
+    wsc.type = 'text/javascript';
+    wsc.async = true;
+    var ssc = document.getElementsByTagName('script')[0];
+    ssc.parentNode.insertBefore(wsc, ssc);
+    console.log(wsc);
+})();
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27820211-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4fae5bbe69fd40f0"></script>
+ <script src="scripts/bootstrap/js/bootstrap.js"></script>
+<script scr="scripts/js/message-center.js"></script>
+</body>
+</html>
